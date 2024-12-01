@@ -8,7 +8,7 @@
 :autocmd FocusGained,BufEnter * checktime
 
 call plug#begin()
-Plug 'puremourning/vimspector'
+"Plug 'puremourning/vimspector' "Didn't work for php debugging for me.
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 
@@ -22,7 +22,7 @@ Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 call plug#end()
 
 let mapleader=","
-let g:vimspector_enable_mappings = 'HUMAN'
+"let g:vimspector_enable_mappings = 'HUMAN'
 
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -35,8 +35,18 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 "Short cuts for coc autocompletion
 nmap <silent> gd <Plug>(coc-definition)
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-lua require("toggleterm").setup()
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " Lazygit with toggleterm
 lua << EOF
@@ -50,7 +60,9 @@ require("toggleterm").setup{
     end
   end,
   open_mapping = [[<c-t>]],
-  direction = 'horizontal'
+  direction = 'horizontal',
+  insert_mappings = true, -- Whether or not the open mapping applies in insert mode
+  terminal_mappings = true, -- Whether or not the open mapping applies in the opened terminals
 }
 local Terminal  = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({
@@ -64,5 +76,6 @@ function _lazygit_toggle()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+-- Mapping to exit terminal mode quickly
+vim.api.nvim_set_keymap('t', '<Esc><Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
 EOF
-
