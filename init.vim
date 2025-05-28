@@ -18,8 +18,8 @@ Plug 'nvim-lua/plenary.nvim'  "Only in neovim, It is required for telescope
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }  "Only in neovim, It is fuzzy finder with ripgrep command
 
 "telescope alternative for vim
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 "Dependencies=choco install fzf bat ripgrep universal-ctags ag strawberryperl
 
 
@@ -40,7 +40,8 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 "when using fzf.vim
-nnoremap <C-p> :Files<Cr>
+"nnoremap <leader>ff <cmd>Files<cr>
+"nnoremap <leader>fg <cmd>RG<cr>
 
 "Short cuts for coc autocompletion
 nmap <silent> gd <Plug>(coc-definition)
