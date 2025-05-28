@@ -39,6 +39,9 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+"when using fzf.vim
+nnoremap <C-p> :Files<Cr>
+
 "Short cuts for coc autocompletion
 nmap <silent> gd <Plug>(coc-definition)
 " Use K to show documentation in preview window.
