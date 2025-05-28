@@ -9,15 +9,21 @@
 
 call plug#begin()
 "Plug 'puremourning/vimspector' "Didn't work for php debugging for me.
-Plug 'preservim/nerdtree'
-Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree'  "Works both in vim and neovim
+Plug 'tpope/vim-commentary'  "Works both in vim and neovim
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  "Works both in vim and neovim
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+Plug 'nvim-lua/plenary.nvim'  "Only in neovim, It is required for telescope
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }  "Only in neovim, It is fuzzy finder with ripgrep command
 
-Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+"telescope alternative for vim
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+"Dependencies=choco install fzf bat ripgrep universal-ctags ag strawberryperl
+
+
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}  "Only in neovim
 " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
 call plug#end()
 
@@ -27,7 +33,7 @@ let mapleader=","
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
 
-" Find files using Telescope command-line sugar.
+"ONly for neovim, Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
