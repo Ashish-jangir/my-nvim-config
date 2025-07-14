@@ -1,6 +1,6 @@
 local home = os.getenv("HOME")
 local jdtls_path = home .. "/.local/share/java-lsp/jdtls"
-
+local java_exe = "C:/portable-bin-apps/zulu-jdk-17/bin/java.exe"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = home .. "/.local/share/java-workspaces/" .. project_name
 local on_attach = function(client, bufnr)
@@ -11,12 +11,12 @@ local on_attach = function(client, bufnr)
 
   -- Show documentation (hover)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  
 end
-
 
 local config = {
     cmd = {
-        'java',
+        java_exe,
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',

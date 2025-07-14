@@ -22,6 +22,7 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }  "Only in neovim, It is
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}  "Only in neovim
 " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Java Development LSP & tools
 " LSP support
 Plug 'neovim/nvim-lspconfig'
@@ -34,6 +35,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
 autocmd FileType java lua require('java_lsp')
 
+Plug 'folke/tokyonight.nvim'
 "telescope alternative for vim
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "Plug 'junegunn/fzf.vim'
@@ -42,6 +44,7 @@ autocmd FileType java lua require('java_lsp')
 "Plug 'puremourning/vimspector' "Didn't work for php debugging for me.
 call plug#end()
 
+colorscheme tokyonight
 let mapleader=","
 
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -54,6 +57,17 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 lua << EOF
+--For Windows supportt only
+require 'nvim-treesitter.install'.prefer_git = false
+require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "java", "lua", "json", "bash", "python" }, -- Add more as needed
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
 require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
   size = function(term)
