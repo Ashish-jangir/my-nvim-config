@@ -1,0 +1,27 @@
+{
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.8",
+            "path": "C:\\portable-bin-apps\\zulu-jdk-8"
+        },
+        {
+            "name": "JavaSE-17",
+            "path": "C:\\portable-bin-apps\\zulu-jdk-17",
+            "default": true
+        }
+    ],
+    "java.jdt.ls.java.home":"C:\\portable-bin-apps\\zulu-jdk-17",
+    "semanticTokens.enable": true,
+    "java.trace.server": "verbose",
+    "java.server.launchMode": "Standard",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.referencesCodeLens.enabled": true,
+    "java.implementationsCodeLens.enabled": true,
+    "java.format.enabled": true,
+    "java.completion.favoriteStaticMembers": [
+        "org.junit.Assert.*",
+        "org.mockito.Mockito.*",
+        "org.mockito.ArgumentMatchers.*"
+    ]
+}
+
