@@ -12,7 +12,10 @@ local on_attach = function(client, bufnr)
   -- Show documentation (hover)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   
+   -- 🔍 Find references (usages)
+   vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, bufopts)
 end
+local root_dir = require('jdtls.setup').find_root({'.git', 'pom.xml', 'build.gradle'})
 
 local config = {
     cmd = {
@@ -33,7 +36,8 @@ local config = {
         '-data', 
         vim.fn.expand(workspace_dir),
     },
-    on_attach = on_attach
+    on_attach = on_attach,
+    root_dir = root_dir
 }
 
 require('jdtls').start_or_attach(config)
