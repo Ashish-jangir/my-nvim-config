@@ -1,7 +1,7 @@
 -- ~/.config/nvim/lua/plugins/cpp/cpp_opengl.lua
 return {
   -- Optional: adapter manager for codelldb in mason
-  { "williamboman/mason.nvim", opts = { ensure_installed = { "clangd", "clang-format" } } },
+  { "williamboman/mason.nvim", opts = { ensure_installed = { "clangd", "clang-format", "codelldb" } } },
 
   -- none-ls (maintained fork of null-ls)
   {
@@ -44,5 +44,34 @@ return {
   -- C++/clangd handled by lspconfig; ensure mason installs clangd
   -- Debugging: nvim-dap + codelldb
   { "mfussenegger/nvim-dap", config = true },
-  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    opts = {
+      handlers = {},
+    },
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
+  },
 }
