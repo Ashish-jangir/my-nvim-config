@@ -22,3 +22,6 @@ vim.opt.autoindent = true -- :set autoindent (default in Neovim)
 -- File Handling
 -- Note: 'autoread' is true by default in Neovim, but can be set explicitly:
 vim.opt.autoread = true -- :set autoread
+
+-- Disable mouse
+vim.opt.mouse = ""

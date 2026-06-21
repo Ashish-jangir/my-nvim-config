@@ -7,7 +7,12 @@ plugins["neovim/nvim-lspconfig"] = {
     servers = {
       clangd = {
         -- optional clangd-specific settings
-        cmd = { "clangd", "--background-index" },
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--completion-style=detailed",
+        },
         root_dir = require("lspconfig.util").root_pattern(
           "compile_commands.json",
           "compile_flags.txt",

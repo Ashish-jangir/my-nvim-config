@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 return {
   "nvim-java/nvim-java",
   config = false,
@@ -19,7 +23,7 @@ return {
                       "-Dsun.zip.disableMemoryMapping=true",
                       "-XX:+UseStringDeduplication",
                       "-XX:+HeapDumpOnOutOfMemoryError",
-                      "-Xmx4G", -- For small project Xmx2G, for medium -Xmx4G, for Huge monorepo -Xmx6G
+                      "-Xmx2G", -- For small project Xmx2G, for medium -Xmx4G, for Huge monorepo -Xmx6G
                       "-Xms100m",
                     }, " "),
                   },
