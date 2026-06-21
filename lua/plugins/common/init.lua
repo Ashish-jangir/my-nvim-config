@@ -1,3 +1,6 @@
+if true then
+  return {}
+end
 local plugins = {
   {
     "akinsho/toggleterm.nvim",
