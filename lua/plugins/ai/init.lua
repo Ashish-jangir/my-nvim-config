@@ -7,7 +7,7 @@ local plugins = {
     config = function()
       require("copilot").setup({
         suggestion = {
-          enabled = true,
+          enabled = false, -- Disable inline suggestions by default
           auto_trigger = true,
           keymap = {
             accept = "<C-l>", --Ctrl+l to accept suggestion
