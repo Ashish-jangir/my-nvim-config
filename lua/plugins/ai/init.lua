@@ -1,4 +1,12 @@
 local plugins = {
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<localleader>c", group = "copilot" },
+      },
+    },
+  },
   -- GitHub Copilot integration
   {
     "zbirenbaum/copilot.lua",
