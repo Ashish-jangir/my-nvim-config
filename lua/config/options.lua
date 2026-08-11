@@ -6,8 +6,9 @@ local is_linux = vim.loop.os_uname().sysname == "Linux"
 
 if is_linux then
   local g = vim.g
-
   g.clipboard = "xclip"
+else
+  LazyVim.terminal.setup("bash")
 end
 -- Line Numbers
 vim.opt.number = true -- :set number
@@ -25,3 +26,7 @@ vim.opt.autoread = true -- :set autoread
 
 -- Disable mouse
 vim.opt.mouse = ""
+
+--folding, I would want manual mode (for select and do zf) but snacks.nvim overrides it averytime.
+-- TODO find how to stop snacks.nvim from overriding it.
+vim.opt.foldmethod = "manual"
